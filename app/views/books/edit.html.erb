@@ -1,9 +1,27 @@
-<h1>編集画面</h1>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Editing Book</h1>
+	<%= form_for(@book) do |b| %>
 
-<%= form_for(@book) do |b| %>
-    <h4>タイトル</h4>
-    <%= b.text_field :title %>
-    <h4>本文</h4>
-    <%= b.text_area :body %>
-    <%= b.submit '保存' %>
-<% end %>
+		<div class="field">
+			<%= b.label :title, "Title" %>
+			<p><%= b.text_field :title %></p>
+		</div>
+
+		<div class="field">
+			<%= b.label :body, "Opinion" %>
+			<p><%= b.text_area :body %></p>
+		</div>
+
+		<div class="action">
+			<%= b.submit 'Create Book', class: "btn btn-primary" %>
+		</div>
+
+	<% end %>
+
+</body>
+</html>
