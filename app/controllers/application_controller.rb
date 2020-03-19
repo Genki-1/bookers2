@@ -6,4 +6,11 @@ class ApplicationController < ActionController::Base
     	devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   	end
 
+	def after_sign_up_path_for(resource)
+    	user_path(resource) # 新規登録後に遷移するpathを設定
+  	end
+
+	def after_sign_in_path_for(resource)
+    	user_path(resource) # ログイン後に遷移するpathを設定
+  	end
 end
