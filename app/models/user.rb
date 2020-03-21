@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :books, dependent: :destroy
+
+  def books
+	  return Book.where(user_id: self.id)
+	end
 end

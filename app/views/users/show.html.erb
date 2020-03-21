@@ -4,6 +4,27 @@
 	<title></title>
 </head>
 <body>
+
+	<header class="navbar navbar-fixed-top navbar-inverse">
+	  <div class="container">
+	    <nav class="nav navbar-nav navbar-left">
+	      <span>Bookers</span>
+	    </nav>
+	    <nav>
+	      <ul class="nav navbar-nav navbar-right">
+	          <li><%= link_to 'Home', user_path(current_user), class: "glyphicon glyphicon-home home" %></li>
+
+	          <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
+
+	          <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
+
+	          <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
+	      </ul>
+	    </nav>
+	  </div>
+	</header>
+
+
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-3">
@@ -38,7 +59,7 @@
 			        </thead>
 
 			        <tbody>
-			          <% @books.each do |book| %>
+			          <% @user.books.each do |book| %>
 			            <tr>
 			              <td><%= link_to book.title, book_path(book) %></td>
 			              <td><%= book.body %></td>

@@ -9,6 +9,36 @@
 	box-sizing: border-box;
 }
 
+body {
+	margin: 33px;
+}
+
+
 .body {
 	margin: 33px;
+}
+
+div {
+	margin-bottom: 10px;
+}
+
+label {
+	display: block;
+}
+
+a:hover {
+	background-color: black;
+}
+
+a:visited {
+	color: #666;
+}
+
+nav span {
+	color: white;
+	font-size: 20px;
+}
+
+header div {
+	margin-bottom: 0;
 }

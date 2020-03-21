@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :post_images, only: [:new, :create, :index, :show]
 
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index, :edit, :update]
 
   root :to => "books#top"
 
