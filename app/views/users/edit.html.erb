@@ -4,6 +4,7 @@
 	<title></title>
 </head>
 <body>
+	
 
 	<header class="navbar navbar-fixed-top navbar-inverse">
 	  <div class="container">
@@ -24,27 +25,36 @@
 	  </div>
 	</header>
 
+	<div class="body">
+		<div class="container">
 
-	<h1>編集画面</h1>
-	<!-- form_for部分 -->
-	<%= form_for(@user) do |f| %>
+			<h2>User info</h2>
+			<!-- form_for部分 -->
+			<%= form_for(@user) do |f| %>
 
 
-		<div class="field">
-	    	<%= f.label :name, "Name" %>
-	    	<%= f.text_field :name %>
-	    </div>
+				<div class="field">
+			    	<%= f.label :name, "Name" %>
+			    	<%= f.text_field :name %>
+			    </div>
 
-	    <div class="field">
-	    	<%= f.label :introduction, "Introduction" %>
-	    	<%= f.text_area :introduction %>
-	    </div>
+			    <div class="form-group has-icon user-edit">
+				    <%= f.label :Image %><br/>
+				    <%= f.attachment_field :profile_image, placeholder: "Image", class: "user-edit-form" %>
+				</div>
 
-	    <div class="action">
-	    	<%= f.submit 'Update Book' %>
-	    </div>
+			    <div class="field">
+			    	<%= f.label :introduction, "Introduction" %>
+			    	<%= f.text_area :introduction %>
+			    </div>
 
-	<% end %>
+			    <div class="action">
+			    	<%= f.submit 'Update User' %>
+			    </div>
+
+			<% end %>
+		</div>
+	</div>
 
 </body>
 </html>

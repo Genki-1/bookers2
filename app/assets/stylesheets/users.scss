@@ -13,12 +13,17 @@ body {
 	margin: 33px;
 }
 
-
 .body {
-	margin: 33px;
+	margin-top: 60px;
 }
 
+
 div {
+	margin-bottom: 10px;
+}
+
+h2 {
+	margin-top: 20px;
 	margin-bottom: 10px;
 }
 
@@ -41,4 +46,21 @@ nav span {
 
 header div {
 	margin-bottom: 0;
+}
+
+th {
+	display: table-cell;
+}
+
+th h4 {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+#in_up {
+	margin: 33px;
+}
+
+.error {
+	color: red;
 }

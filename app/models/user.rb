@@ -8,5 +8,16 @@ class User < ApplicationRecord
 
   def books
 	  return Book.where(user_id: self.id)
-	end
+  end
+
+  attachment :profile_image
+
+  validates :name, 
+    presence: true,
+    length: { minimum: 2, maximum: 20 }
+
+  validates :email, 
+    uniqueness: true,
+    presence: true
+
 end

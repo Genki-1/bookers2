@@ -12,7 +12,7 @@
 	    </nav>
 	    <nav>
 	      <ul class="nav navbar-nav navbar-right">
-	          <li><%= link_to 'Home', user_path(current_user), class: "glyphicon glyphicon-home home" %></li>
+	          <li><%= link_to ' Home', user_path(current_user), class: "glyphicon glyphicon-home home" %></li>
 
 	          <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
 
@@ -28,25 +28,50 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-3">
-				<h2>New Book</h2>
-				<%= form_for(@newbook) do |b| %>
+				<div class="body">
 
-			      <div class="field">
-			        <%= b.label :title, "Title" %>
-			        <p><%= b.text_field :title %></p>
-			      </div>
+					<h2>User info</h2>
 
-			      <div class="field">
-			        <%= b.label :body, "Opinion" %>
-			        <p><%= b.text_area :body %></p>
-			      </div>
+					<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %>
 
-			      <div class="action">
-			        <%= b.submit 'Create Book', class: "btn btn-primary" %>
-			      </div>
+				      <table class="table">
+				        <tr>
+				　　        <th><h4>name</h4></th>
+				　　        <th><%= @user.name %></th>
+				　       </tr>
+				　       <tr>
+				　　        <th><h4>introduction</h4></th>
+				　　        <th><%= @user.introduction %></th>
+				　　     </tr>
+				      </table>
+				        
+				      <div class="row">
+				         <%= link_to '', edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+				      </div>
 
-			    <% end %>
+
+					<h2>New Book</h2>
+					<%= form_for(@newbook) do |b| %>
+
+
+				      <div class="field row">
+				        <%= b.label :title, "Title" %>
+				        <p><%= b.text_field :title, class: "col-xs-12" %></p>
+				      </div>
+
+				      <div class="field row">
+				        <%= b.label :body, "Opinion" %>
+				        <p><%= b.text_area :body, class: "col-xs-12" %></p>
+				      </div>
+
+				      <div class="action row">
+				        <%= b.submit 'Create Book', class: "col-xs-12 btn btn-primary" %>
+				      </div>
+
+				    <% end %>
+				</div>
 			</div>
+
 
 			<div class="col-xs-9">
 				<h2>Books</h2>

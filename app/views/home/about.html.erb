@@ -19,31 +19,29 @@
 	        </ul>
 	      </nav>
 	    </div>
-	  </header>
+	</header>
 
+	<div class="body">
+      <div class="container">
+
+        <p id="notice"></p>
+
+
+      	<h1>Welcome to <span class="glyphicon glyphicon-book"></span><strong>Bookers</strong>!</h1>
+
+
+      </div>
+    </div>
+
+    <footer>
 	  <div class="container">
-
-		<div class="body">
-			<h2>Forgot your password?</h2>
-
-			<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-			  <div class="error">
-			  	<%= render "devise/shared/error_messages", resource: resource %>
-			  </div>
-
-			  <div class="field">
-			    <%= f.label :email %><br />
-			    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-			  </div>
-
-			  <div class="actions">
-			    <%= f.submit "Send me reset password instructions", class:"btn btn-danger" %>
-			  </div>
-			<% end %>
-
-			<%= render "devise/shared/links" %>
-		</div>
+	  	<div class="row">
+	    	<div class="col-xs-3 col-xs-offset-9">
+	    		<p>CopyRight Infratop.inc</p>
+	    	</div>
+	    </div>
 	  </div>
+	</footer>
 
 </body>
 </html>
