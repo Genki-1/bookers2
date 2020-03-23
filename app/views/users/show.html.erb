@@ -24,11 +24,10 @@
 	  </div>
 	</header>
 
-
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-3">
-				<div class="body">
+	<div class="body">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3">
 
 					<h2>User info</h2>
 
@@ -46,7 +45,11 @@
 				      </table>
 				        
 				      <div class="row">
-				         <%= link_to '', edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+				      	<% if @user.id == current_user.id %>
+				        	<%= link_to '', edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+				       	<% else %>
+				       		<%= link_to '', user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+				       	<% end %>
 				      </div>
 
 
@@ -70,31 +73,32 @@
 
 				    <% end %>
 				</div>
+
+
+				<div class="col-xs-9">
+					<h2>Books</h2>
+					<table class="table">
+						<thead>
+				          <tr>
+				            <th>Title</th>
+				            <th>Opinion</th>
+				          </tr>
+				        </thead>
+
+				        <tbody>
+				          <% @user.books.each do |book| %>
+				            <tr>
+				            	<td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'50x50' %></td>
+				              	<td><%= link_to book.title, book_path(book) %></td>
+				              	<td><%= book.body %></td>
+				            </tr>
+				          <% end %>
+				        </tbody>
+
+					</table>
+				</div>
+
 			</div>
-
-
-			<div class="col-xs-9">
-				<h2>Books</h2>
-				<table class="table">
-					<thead>
-			          <tr>
-			            <th>Title</th>
-			            <th>Opinion</th>
-			          </tr>
-			        </thead>
-
-			        <tbody>
-			          <% @user.books.each do |book| %>
-			            <tr>
-			              <td><%= link_to book.title, book_path(book) %></td>
-			              <td><%= book.body %></td>
-			            </tr>
-			          <% end %>
-			        </tbody>
-
-				</table>
-			</div>
-
 		</div>
 	</div>
 

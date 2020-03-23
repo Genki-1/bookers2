@@ -5,56 +5,103 @@
 </head>
 <body>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-3">
-				<h2>New Book</h2>
-				<%= form_for(@newbook) do |b| %>
+	<header class="navbar navbar-fixed-top navbar-inverse">
+	  <div class="container">
+	    <nav class="nav navbar-nav navbar-left">
+	      <span>Bookers</span>
+	    </nav>
+	    <nav>
+	      <ul class="nav navbar-nav navbar-right">
+	          <li><%= link_to ' Home', user_path(current_user), class: "glyphicon glyphicon-home home" %></li>
 
-			      <div class="field">
-			        <%= b.label :title, "Title" %>
-			        <p><%= b.text_field :title %></p>
-			      </div>
+	          <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
 
-			      <div class="field">
-			        <%= b.label :body, "Opinion" %>
-			        <p><%= b.text_area :body %></p>
-			      </div>
+	          <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
 
-			      <div class="action">
-			        <%= b.submit 'Create Book', class: "btn btn-primary" %>
-			      </div>
+	          <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
+	      </ul>
+	    </nav>
+	  </div>
+	</header>
 
-			    <% end %>
+	<div class="body">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3">
+
+					<h2>User info</h2>
+
+					<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %>
+
+				      <table class="table">
+				        <tr>
+				　　        <th><h4>name</h4></th>
+				　　        <th><%= @user.name %></th>
+				　       </tr>
+				　       <tr>
+				　　        <th><h4>introduction</h4></th>
+				　　        <th><%= @user.introduction %></th>
+				　　     </tr>
+				      </table>
+				        
+				      <div class="row">
+				      	<% if @user.id == current_user.id %>
+				        	<%= link_to '', edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+				       	<% else %>
+				       		<%= link_to '', user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+				       	<% end %>
+				      </div>
+
+
+					<h2>New Book</h2>
+					<%= form_for(@newbook) do |b| %>
+
+
+				      <div class="field row">
+				        <%= b.label :title, "Title" %>
+				        <p><%= b.text_field :title, class: "col-xs-12" %></p>
+				      </div>
+
+				      <div class="field row">
+				        <%= b.label :body, "Opinion" %>
+				        <p><%= b.text_area :body, class: "col-xs-12" %></p>
+				      </div>
+
+				      <div class="action row">
+				        <%= b.submit 'Create Book', class: "col-xs-12 btn btn-primary" %>
+				      </div>
+
+				    <% end %>
+				</div>
+
+				<div class="col-xs-9">
+					<h2>Books detail</h2>
+					<table class="table">
+
+						<tbody>
+				            <tr>
+				            	<td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %><p><%= link_to @user.name, user_path(@user) %></p></td>
+				                <td><%= @book.title %></td>
+				                <td><%= @book.body %></td>
+				                <% if @book.user_id == current_user.id %>
+					                <td>
+						                <%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %>
+						            </td>
+						            <td>
+						                <%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に消しますか?"}, class: "btn btn-danger" %>
+						            </td>
+						        <% end %>
+
+				            </tr>
+				        </tbody>
+
+					</table>
+
+				</div>
+
 			</div>
-
-			<div class="col-xs-9">
-				<h2>Books detail</h2>
-				<table class="table">
-
-					<tbody>
-			            <tr>
-			            	
-			                <td><%= @book.title %></td>
-			                <td><%= @book.body %></td>
-			                
-				                <td>
-					                <%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %>
-					            </td>
-					            <td>
-					                <%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に消しますか?"}, class: "btn btn-danger" %>
-					            </td>
-					        
-
-			            </tr>
-			        </tbody>
-
-				</table>
-
-			</div>
-
 		</div>
-	</div>
+	</body>
 
 </body>
 </html>
