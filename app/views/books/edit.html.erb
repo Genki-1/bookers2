@@ -4,24 +4,78 @@
 	<title></title>
 </head>
 <body>
-	<h1>Editing Book</h1>
-	<%= form_for(@book) do |b| %>
 
-		<div class="field">
-			<%= b.label :title, "Title" %>
-			<p><%= b.text_field :title %></p>
+	<header class="navbar navbar-fixed-top navbar-inverse">
+	  <div class="container">
+	    <nav class="nav navbar-nav navbar-left">
+	      <span>Bookers</span>
+	    </nav>
+	    <nav>
+	      <ul class="nav navbar-nav navbar-right">
+	          <li><%= link_to ' Home', user_path(current_user), class: "glyphicon glyphicon-home home" %></li>
+
+	          <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
+
+	          <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
+
+	          <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
+	      </ul>
+	    </nav>
+	  </div>
+	</header>
+
+	<div class="body">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 col-xs-offset-3">
+					<h1>Editing Book</h1>
+					<%= form_for(@book) do |b| %>
+
+						<% if @book.errors.any? %>
+					      <div id="error_explanation">
+					        <h4><%= @book.errors.count %> error prohibited this obj from being saved:</h4>
+					 
+					        <ul>
+					          <% @book.errors.full_messages.each do |msg| %>
+					            <li><%= msg %></li>
+					          <% end %>
+					        </ul>
+					      </div>
+					    <% end %>
+
+						<div class="field row">
+							<%= b.label :title, "Title" %>
+							<p><%= b.text_field :title, class: "col-xs-12" %></p>
+						</div>
+
+						<div class="field row">
+							<%= b.label :body, "Opinion" %>
+							<p><%= b.text_area :body, class: "col-xs-12" %></p>
+						</div>
+
+						<div class="action row">
+							<%= b.submit 'Update Book', class: "col-xs-12 btn btn-primary" %>
+						</div>
+
+					<% end %>
+					<%= link_to "Show", book_path(@book) %>
+					|
+					<%= link_to "Back", books_path %>
+				</div>
+				<div class="col-xs-6"></div>
+			</div>
 		</div>
+	</div>
 
-		<div class="field">
-			<%= b.label :body, "Opinion" %>
-			<p><%= b.text_area :body %></p>
-		</div>
-
-		<div class="action">
-			<%= b.submit 'Create Book', class: "btn btn-primary" %>
-		</div>
-
-	<% end %>
+	<footer>
+	  <div class="container">
+	  	<div class="row">
+	    	<div class="col-xs-3 col-xs-offset-9">
+	    		<p>CopyRight Infratop.inc</p>
+	    	</div>
+	    </div>
+	  </div>
+	</footer>
 
 </body>
 </html>

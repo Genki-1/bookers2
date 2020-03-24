@@ -1,0 +1,10 @@
+.notice {
+	color: green;
+	margin-top: 52px;
+	margin-left: 55px;
+	margin-bottom: -52px;
+}
+
+.alert {
+	display: none;
+}

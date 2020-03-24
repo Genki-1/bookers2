@@ -11,6 +11,7 @@
 	    <nav class="nav navbar-nav navbar-left">
 	      <span>Bookers</span>
 	    </nav>
+
 	    <nav>
 	      <ul class="nav navbar-nav navbar-right">
 	          <li><%= link_to ' Home', user_path(current_user), class: "glyphicon glyphicon-home home" %></li>
@@ -29,6 +30,18 @@
 		<div class="container">
 
 			<h2>User info</h2>
+
+			<% if @user.errors.any? %>
+				<div id="error_explanation">
+					<h4><%= @user.errors.count %> error prohibited this obj from being saved:</h4>
+					<ul>
+						<% @user.errors.full_messages.each do |msg| %>
+							<li><%= msg %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+
 			<!-- form_for部分 -->
 			<%= form_for(@user) do |f| %>
 
@@ -55,6 +68,16 @@
 			<% end %>
 		</div>
 	</div>
+
+	<footer>
+	  <div class="container">
+	  	<div class="row">
+	    	<div class="col-xs-3 col-xs-offset-9">
+	    		<p>CopyRight Infratop.inc</p>
+	    	</div>
+	    </div>
+	  </div>
+	</footer>
 
 </body>
 </html>

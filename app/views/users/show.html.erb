@@ -26,6 +26,19 @@
 
 	<div class="body">
 		<div class="container">
+
+			<% if @newbook.errors.any? %>
+					<div id="error_explanation">
+						<h3><%= @book.errors.count %> error prohibited this obj from being saved:</h3>
+					 
+					    <ul>
+					        <% @book.errors.full_messages.each do |msg| %>
+					            <li><%= msg %></li>
+					        <% end %>
+					    </ul>
+					</div>
+			<% end %>
+
 			<div class="row">
 				<div class="col-xs-3">
 
@@ -53,7 +66,7 @@
 				      </div>
 
 
-					<h2>New Book</h2>
+					<h2>New book</h2>
 					<%= form_for(@newbook) do |b| %>
 
 
@@ -80,6 +93,7 @@
 					<table class="table">
 						<thead>
 				          <tr>
+				          	<th></th>
 				            <th>Title</th>
 				            <th>Opinion</th>
 				          </tr>
@@ -101,6 +115,16 @@
 			</div>
 		</div>
 	</div>
+
+	<footer>
+	  <div class="container">
+	  	<div class="row">
+	    	<div class="col-xs-3 col-xs-offset-9">
+	    		<p>CopyRight Infratop.inc</p>
+	    	</div>
+	    </div>
+	  </div>
+	</footer>
 
 </body>
 </html>
