@@ -105,6 +105,24 @@
 				            	<td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'50x50' %></td>
 				              	<td><%= link_to book.title, book_path(book) %></td>
 				              	<td><%= book.body %></td>
+
+				              	<% if @book.favorited_by?(current_user) %>
+				              	  <td>
+								    <%= link_to book_favorites_path(@book), method: :delete do %>
+								      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+								      <%= @book.favorites.count %>
+								  </td>
+								    <% end %>
+								<% else %>
+								  <td>
+								    <%= link_to book_favorites_path(@book), method: :post do %>
+								      <i class="fa fa-heart-o" aria-hidden="true"></i>
+								      <%= @book.favorites.count %>
+								    <% end %>
+								  </td>
+								<% end %>
+
+				              	<td><%= "#{@book.book_comments.count} コメント" %></td>
 				            </tr>
 				          <% end %>
 				        </tbody>

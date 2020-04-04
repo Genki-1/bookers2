@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   		@user = User.find(params[:id])
   		@books = Book.all
   		@newbook = Book.new
+  		@book = Book.find(params[:id])
     end
 
     def edit
@@ -52,6 +53,6 @@ class UsersController < ApplicationController
 	    unless user_signed_in?
 	      redirect_to ("/users/sign_in")
 	    end
-	  end
+	end
 
 end
