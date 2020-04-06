@@ -55,6 +55,14 @@
 				　　        <th><h4>introduction</h4></th>
 				　　        <th><%= @user.introduction %></th>
 				　　     </tr>
+						<tr>
+							<th><h4>follows</h4></th>
+							<th><%= link_to @user.follower.count, follower_user_path(@user) %></th>
+						</tr>
+						<tr>
+							<th><h4>followers</h4></th>
+							<th><%= link_to @user.followed.count, followed_user_path(@user) %></th>
+						</tr>
 				      </table>
 				        
 				      <div class="row">
@@ -64,6 +72,14 @@
 				       		<%= link_to '', user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
 				       	<% end %>
 				      </div>
+
+				      <% unless current_user == @user %>
+					      <% if current_user.following?(@user) %>
+							  <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST, class: "btn btn-primary" %>
+						  <% else %>
+							  <%= link_to 'フォローする', follow_path(@user.id), method: :POST, class: "btn btn-success" %>
+						  <% end %>
+					  <% end %>
 
 
 					<h2>New book</h2>

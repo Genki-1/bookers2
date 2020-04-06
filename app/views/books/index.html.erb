@@ -56,6 +56,14 @@
 				　　        <th><h4>introduction</h4></th>
 				　　        <th><%= current_user.introduction %></th>
 				　　     </tr>
+						<tr>
+							<th><h4>follows</h4></th>
+							<th><%= link_to current_user.follower.count, follower_user_path(current_user) %></th>
+						</tr>
+						<tr>
+							<th><h4>followers</h4></th>
+							<th><%= link_to current_user.followed.count, followed_user_path(current_user) %></th>
+						</tr>
 				      </table>
 
 				      <div class="row">

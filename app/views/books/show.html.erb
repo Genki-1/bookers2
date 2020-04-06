@@ -57,6 +57,14 @@
 				　　        <th><h4>introduction</h4></th>
 				　　        <th><%= @book.user.introduction %></th>
 				　　     </tr>
+						<tr>
+							<th><h4>follows</h4></th>
+							<th><%= link_to @book.user.follower.count, follower_user_path(@book.user) %></th>
+						</tr>
+						<tr>
+							<th><h4>followers</h4></th>
+							<th><%= link_to @book.user.followed.count, followed_user_path(@book.user) %></th>
+						</tr>
 				      </table>
 				        
 				      <div class="row">
@@ -67,6 +75,13 @@
 				       	<% end %>
 				      </div>
 
+				      <% unless current_user == @book.user %>
+					      <% if current_user.following?(@book.user) %>
+							  <%= link_to 'フォロー外す', unfollow_path(@book.user.id), method: :POST %>
+						  <% else %>
+							  <%= link_to 'フォローする', follow_path(@book.user.id), method: :POST %>
+						  <% end %>
+					  <% end %>
 
 					<h2>New book</h2>
 					<%= form_for(@newbook) do |b| %>
