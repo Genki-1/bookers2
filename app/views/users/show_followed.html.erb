@@ -24,8 +24,8 @@
 	  </div>
 	</header>
 
-		<table class="table">
-			<h2>Follow Users</h2>
+	<table class="table">
+		<h2>Follower Users</h2>
 			<thead>
 				<tr>
 					<th>image</th>
@@ -36,7 +36,7 @@
 
 			<tbody>
 
-				<% @user.following_user.each do |user| %>
+				<% @user.follower_user.each do |user| %>
 						    <tr>
 						    	<td><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'50x50' %></td>
 						        <td><%= user.name %></td>
@@ -59,9 +59,9 @@
 				<% end %>
 
 			</tbody>
-		</table>
+	</table>
 
-		<footer>
+	<footer>
 	  <div class="container">
 	  	<div class="row">
 	    	<div class="col-xs-3 col-xs-offset-9">
@@ -70,7 +70,6 @@
 	    </div>
 	  </div>
 	</footer>
-
 
 </body>
 </html>
