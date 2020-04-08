@@ -13,6 +13,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :searches do
+    member do
+      get :search
+    end
+  end
+
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
 

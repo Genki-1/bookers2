@@ -27,6 +27,16 @@
 	<div class="body">
 		<div class="container">
 
+			<div class="search">
+				<%= form_tag searches_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
+				  <p>
+				    <%= text_field_tag :search, params[:search] %>
+
+				    <%= submit_tag "Search", :name => nil %>
+				  </p>
+				<% end %>
+			</div>
+
 			<% if @book.errors.any? %>
 					<div id="error_explanation">
 						<h3><%= @book.errors.count %> error prohibited this obj from being saved:</h3>
