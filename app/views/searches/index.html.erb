@@ -28,10 +28,10 @@
 
       <p id="notice"><%= notice %></p>
       
-        <h1>User Search 'For' '<%= params[:search] %>'</h1>
   
 
-
+    <% if @model == 'user' %>
+      <h2>User Search</h2>
       <table class="table">
         <thead>
           <tr>
@@ -42,7 +42,7 @@
         </thead>
 
         <tbody>
-          <% @user_searches.each do |search| %>
+          <% @records.each do |search| %>
             <tr>
               <td><%= attachment_image_tag search, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'50x50' %></td>
               <td><%= search.name %></td>
@@ -52,6 +52,35 @@
           <% end %>
         </tbody>
       </table>
+
+      <% elsif @model == 'book' %>
+        <h2>Book Search</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>image</th>
+              <th>title</th>
+              <th>opinion</th>
+            </tr>
+          </thead>
+
+        <tbody>
+          <% @records.each do |search| %>
+            <tr>
+               <td>
+                <%= link_to user_path(search.user) do %>
+                <%= attachment_image_tag search.user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'50x50' %>
+                </td>
+                <% end %>
+              <td><%= link_to search.title, book_path(search) %></td>
+              <td><%= search.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+
+    
+        </table>
+    <% end %>
 
     </div>
   </div>
