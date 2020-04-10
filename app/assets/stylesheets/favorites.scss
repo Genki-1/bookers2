@@ -1,3 +1,59 @@
 // Place all the styles related to the Favorites controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 33px;
+}
+
+.body {
+	margin-top: 60px;
+}
+
+div {
+	margin-bottom: 10px;
+}
+
+label {
+	display: block;
+}
+
+a:hover {
+	background-color: black;
+}
+
+a:visited {
+	color: #666;
+}
+
+#top_btn {
+	margin-bottom: 0;
+}
+
+
+nav span {
+	color: white;
+	font-size: 20px;
+}
+
+header div {
+	margin-bottom: 0;
+}
+
+th {
+	vertical-align: middle;
+}
+
+#error_explanation {
+	color: red;
+}
+
+#error_explanation li {
+	margin-left: 70px;
+}
