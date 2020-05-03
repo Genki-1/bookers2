@@ -6,49 +6,49 @@
 <body>
 
 	<header class="navbar navbar-fixed-top navbar-inverse">
-	  <div class="container">
-	    <nav class="nav navbar-nav navbar-left">
-	      <span>Bookers</span>
-	    </nav>
-	    <nav>
-	      <ul class="nav navbar-nav navbar-right">
-	          <li><%= link_to ' Home', user_path(current_user), class: "glyphicon glyphicon-home home" %></li>
+		<div class="container">
+			<nav class="nav navbar-nav navbar-left">
+				<span>Bookers</span>
+			</nav>
+			<nav>
+				<ul class="nav navbar-nav navbar-right">
+					<li><%= link_to ' Home', user_path(current_user), class: "glyphicon glyphicon-home home" %></li>
 
-	          <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
+					<li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
 
-	          <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
+					<li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
 
-	          <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
-	      </ul>
-	    </nav>
-	  </div>
+					<li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
+				</ul>
+			</nav>
+		</div>
 	</header>
 
 	<div class="body">
 		<div class="container">
 			<div class="search">
 				<%= form_tag searches_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
-				  <p>
-				   <%= text_field_tag 'search[content]' %>
-				   <%= select_tag 'search[model]', options_for_select({ "User" => "user", "Book" => "book" }) %>
+				<p>
+					<%= text_field_tag 'search[content]' %>
+					<%= select_tag 'search[model]', options_for_select({ "User" => "user", "Book" => "book" }) %>
 
-				   <%= select_tag 'search[how]', options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"  }) %>
+					<%= select_tag 'search[how]', options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"  }) %>
 
-				    <%= submit_tag "Search", :name => nil %>
-				  </p>
+					<%= submit_tag "Search", :name => nil %>
+				</p>
 				<% end %>
 			</div>
 
 			<% if @newbook.errors.any? %>
-					<div id="error_explanation">
-						<h3><%= @book.errors.count %> error prohibited this obj from being saved:</h3>
-					 
-					    <ul>
-					        <% @book.errors.full_messages.each do |msg| %>
-					            <li><%= msg %></li>
-					        <% end %>
-					    </ul>
-					</div>
+			<div id="error_explanation">
+				<h3><%= @book.errors.count %> error prohibited this obj from being saved:</h3>
+				
+				<ul>
+					<% @book.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
 			<% end %>
 
 			<div class="row">
@@ -58,15 +58,15 @@
 
 					<%= attachment_image_tag current_user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %>
 
-				      <table class="table">
-				        <tr>
-				　　        <th><h4>name</h4></th>
-				　　        <th><%= current_user.name %></th>
-				　       </tr>
-				　       <tr>
-				　　        <th><h4>introduction</h4></th>
-				　　        <th><%= current_user.introduction %></th>
-				　　     </tr>
+					<table class="table">
+						<tr>
+							　　        <th><h4>name</h4></th>
+							　　        <th><%= current_user.name %></th>
+						　       </tr>
+						　       <tr>
+							　　        <th><h4>introduction</h4></th>
+							　　        <th><%= current_user.introduction %></th>
+						　　     </tr>
 						<tr>
 							<th><h4>follows</h4></th>
 							<th><%= link_to current_user.follower.count, follower_user_path(current_user) %></th>
@@ -75,86 +75,86 @@
 							<th><h4>followers</h4></th>
 							<th><%= link_to current_user.followed.count, followed_user_path(current_user) %></th>
 						</tr>
-				      </table>
+					</table>
 
-				      <div class="row">
-				      	<%= link_to '', edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
-				      </div>
+					<div class="row">
+						<%= link_to '', edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+					</div>
 
 
 					<h2>New book</h2>
 					<%= form_for(@newbook) do |b| %>
 
 
-				      <div class="field row">
-				        <%= b.label :title, "Title" %>
-				        <p><%= b.text_field :title, class: "col-xs-12" %></p>
-				      </div>
+					<div class="field row">
+						<%= b.label :title, "Title" %>
+						<p><%= b.text_field :title, class: "col-xs-12" %></p>
+					</div>
 
-				      <div class="field row">
-				        <%= b.label :body, "Opinion" %>
-				        <p><%= b.text_area :body, class: "col-xs-12" %></p>
-				      </div>
+					<div class="field row">
+						<%= b.label :body, "Opinion" %>
+						<p><%= b.text_area :body, class: "col-xs-12" %></p>
+					</div>
 
-				      <div class="action row">
-				        <%= b.submit 'Create Book', class: "col-xs-12 btn btn-primary" %>
-				      </div>
+					<div class="action row">
+						<%= b.submit 'Create Book', class: "col-xs-12 btn btn-primary" %>
+					</div>
 
-				    <% end %>
+					<% end %>
 				</div>
 
 				<div class="col-xs-9">
-				    <h2>Users</h2>
+					<h2>Users</h2>
 
-				    <table class="table">
-					  <thead>
-					    <tr>
-					      	<th>image</th>
-					      	<th>name</th>
-					      	<th colspan="3"></th>
-					    </tr>
-					  </thead>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>image</th>
+								<th>name</th>
+								<th colspan="3"></th>
+							</tr>
+						</thead>
 
-					  <tbody>
+						<tbody>
 
-					  	<% @users.each do |user| %>
-						    <tr>
-						    	<td><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'50x50' %></td>
-						        <td><%= user.name %></td>
+							<% @users.each do |user| %>
+							<tr>
+								<td><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'50x50' %></td>
+								<td><%= user.name %></td>
 
-						        <td>フォロー数 : <%= user.follower.count %></td>
-						        <td>フォロワー数 : <%= user.followed.count %></td>
+								<td>フォロー数 : <%= user.follower.count %></td>
+								<td>フォロワー数 : <%= user.followed.count %></td>
 
-						        <td>
-								    <% unless current_user == user %>
-									    <% if current_user.following?(user) %>
-									      <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
-									    <% else %>
-									      <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
-									    <% end %>
-								    <% end %>
-						        </td>
+								<td>
+									<% unless current_user == user %>
+									<% if current_user.following?(user) %>
+									<%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+									<% else %>
+									<%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+									<% end %>
+									<% end %>
+								</td>
 
-						        <td><%= link_to 'Show', user_path(user) %></td>
-						    </tr>
-						<% end %>
+								<td><%= link_to 'Show', user_path(user) %></td>
+							</tr>
+							<% end %>
 
-					  </tbody>
+						</tbody>
 					</table>
 
-			    </div>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<footer>
-	  <div class="container">
-	  	<div class="row">
-	    	<div class="col-xs-3 col-xs-offset-9">
-	    		<p>CopyRight Infratop.inc</p>
-	    	</div>
-	    </div>
-	  </div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3 col-xs-offset-9">
+					<p>CopyRight Infratop.inc</p>
+				</div>
+			</div>
+		</div>
 	</footer>
 
 </body>

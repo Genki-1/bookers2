@@ -7,23 +7,23 @@
 	
 
 	<header class="navbar navbar-fixed-top navbar-inverse">
-	  <div class="container">
-	    <nav class="nav navbar-nav navbar-left">
-	      <span>Bookers</span>
-	    </nav>
+		<div class="container">
+			<nav class="nav navbar-nav navbar-left">
+				<span>Bookers</span>
+			</nav>
 
-	    <nav>
-	      <ul class="nav navbar-nav navbar-right">
-	          <li><%= link_to ' Home', user_path(current_user), class: "glyphicon glyphicon-home home" %></li>
+			<nav>
+				<ul class="nav navbar-nav navbar-right">
+					<li><%= link_to ' Home', user_path(current_user), class: "glyphicon glyphicon-home home" %></li>
 
-	          <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
+					<li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
 
-	          <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
+					<li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
 
-	          <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
-	      </ul>
-	    </nav>
-	  </div>
+					<li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
+				</ul>
+			</nav>
+		</div>
 	</header>
 
 	<div class="body">
@@ -32,51 +32,51 @@
 			<h2>User info</h2>
 
 			<% if @user.errors.any? %>
-				<div id="error_explanation">
-					<h4><%= @user.errors.count %> error prohibited this obj from being saved:</h4>
-					<ul>
-						<% @user.errors.full_messages.each do |msg| %>
-							<li><%= msg %></li>
-						<% end %>
-					</ul>
-				</div>
+			<div id="error_explanation">
+				<h4><%= @user.errors.count %> error prohibited this obj from being saved:</h4>
+				<ul>
+					<% @user.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
 			<% end %>
 
 			<!-- form_for部分 -->
 			<%= form_for(@user) do |f| %>
 
 
-				<div class="field">
-			    	<%= f.label :name, "Name" %>
-			    	<%= f.text_field :name %>
-			    </div>
+			<div class="field">
+				<%= f.label :name, "Name" %>
+				<%= f.text_field :name %>
+			</div>
 
-			    <div class="form-group has-icon user-edit">
-				    <%= f.label :Image %><br/>
-				    <%= f.attachment_field :profile_image, placeholder: "Image", class: "user-edit-form" %>
-				</div>
+			<div class="form-group has-icon user-edit">
+				<%= f.label :Image %><br/>
+				<%= f.attachment_field :profile_image, placeholder: "Image", class: "user-edit-form" %>
+			</div>
 
-			    <div class="field">
-			    	<%= f.label :introduction, "Introduction" %>
-			    	<%= f.text_area :introduction %>
-			    </div>
+			<div class="field">
+				<%= f.label :introduction, "Introduction" %>
+				<%= f.text_area :introduction %>
+			</div>
 
-			    <div class="action">
-			    	<%= f.submit 'Update User' %>
-			    </div>
+			<div class="action">
+				<%= f.submit 'Update User' %>
+			</div>
 
 			<% end %>
 		</div>
 	</div>
 
 	<footer>
-	  <div class="container">
-	  	<div class="row">
-	    	<div class="col-xs-3 col-xs-offset-9">
-	    		<p>CopyRight Infratop.inc</p>
-	    	</div>
-	    </div>
-	  </div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3 col-xs-offset-9">
+					<p>CopyRight Infratop.inc</p>
+				</div>
+			</div>
+		</div>
 	</footer>
 
 </body>

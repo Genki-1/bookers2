@@ -6,37 +6,37 @@
 <body>
 
 	<header class="navbar navbar-fixed-top navbar-inverse">
-	  <div class="container">
-	    <nav class="nav navbar-nav navbar-left">
-	      <span>Bookers</span>
-	    </nav>
-	    <nav>
-	      <ul class="nav navbar-nav navbar-right">
-	          <li><%= link_to ' Home', user_path(current_user), class: "glyphicon glyphicon-home home" %></li>
+		<div class="container">
+			<nav class="nav navbar-nav navbar-left">
+				<span>Bookers</span>
+			</nav>
+			<nav>
+				<ul class="nav navbar-nav navbar-right">
+					<li><%= link_to ' Home', user_path(current_user), class: "glyphicon glyphicon-home home" %></li>
 
-	          <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
+					<li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
 
-	          <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
+					<li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
 
-	          <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
-	      </ul>
-	    </nav>
-	  </div>
+					<li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a></li>
+				</ul>
+			</nav>
+		</div>
 	</header>
 
 	<div class="body">
 		<div class="container">
 
 			<% if @newbook.errors.any? %>
-					<div id="error_explanation">
-						<h3><%= @book.errors.count %> error prohibited this obj from being saved:</h3>
-					 
-					    <ul>
-					        <% @book.errors.full_messages.each do |msg| %>
-					            <li><%= msg %></li>
-					        <% end %>
-					    </ul>
-					</div>
+			<div id="error_explanation">
+				<h3><%= @book.errors.count %> error prohibited this obj from being saved:</h3>
+				
+				<ul>
+					<% @book.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
 			<% end %>
 
 			<div class="row">
@@ -46,15 +46,15 @@
 
 					<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %>
 
-				      <table class="table">
-				        <tr>
-				　　        <th><h4>name</h4></th>
-				　　        <th><%= @user.name %></th>
-				　       </tr>
-				　       <tr>
-				　　        <th><h4>introduction</h4></th>
-				　　        <th><%= @user.introduction %></th>
-				　　     </tr>
+					<table class="table">
+						<tr>
+							　　        <th><h4>name</h4></th>
+							　　        <th><%= @user.name %></th>
+						　       </tr>
+						　       <tr>
+							　　        <th><h4>introduction</h4></th>
+							　　        <th><%= @user.introduction %></th>
+						　　     </tr>
 						<tr>
 							<th><h4>follows</h4></th>
 							<th><%= link_to @user.follower.count, follower_user_path(@user) %></th>
@@ -63,44 +63,44 @@
 							<th><h4>followers</h4></th>
 							<th><%= link_to @user.followed.count, followed_user_path(@user) %></th>
 						</tr>
-				      </table>
-				        
-				      <div class="row">
-				      	<% if @user.id == current_user.id %>
-				        	<%= link_to '', edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
-				       	<% else %>
-				       		<%= link_to '', user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
-				       	<% end %>
-				      </div>
+					</table>
+					
+					<div class="row">
+						<% if @user.id == current_user.id %>
+						<%= link_to '', edit_user_path(@user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+						<% else %>
+						<%= link_to '', user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+						<% end %>
+					</div>
 
-				      <% unless current_user == @user %>
-					      <% if current_user.following?(@user) %>
-							  <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST, class: "btn btn-primary" %>
-						  <% else %>
-							  <%= link_to 'フォローする', follow_path(@user.id), method: :POST, class: "btn btn-success" %>
-						  <% end %>
-					  <% end %>
+					<% unless current_user == @user %>
+					<% if current_user.following?(@user) %>
+					<%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST, class: "btn btn-primary" %>
+					<% else %>
+					<%= link_to 'フォローする', follow_path(@user.id), method: :POST, class: "btn btn-success" %>
+					<% end %>
+					<% end %>
 
 
 					<h2>New book</h2>
 					<%= form_for(@newbook) do |b| %>
 
 
-				      <div class="field row">
-				        <%= b.label :title, "Title" %>
-				        <p><%= b.text_field :title, class: "col-xs-12" %></p>
-				      </div>
+					<div class="field row">
+						<%= b.label :title, "Title" %>
+						<p><%= b.text_field :title, class: "col-xs-12" %></p>
+					</div>
 
-				      <div class="field row">
-				        <%= b.label :body, "Opinion" %>
-				        <p><%= b.text_area :body, class: "col-xs-12" %></p>
-				      </div>
+					<div class="field row">
+						<%= b.label :body, "Opinion" %>
+						<p><%= b.text_area :body, class: "col-xs-12" %></p>
+					</div>
 
-				      <div class="action row">
-				        <%= b.submit 'Create Book', class: "col-xs-12 btn btn-primary" %>
-				      </div>
+					<div class="action row">
+						<%= b.submit 'Create Book', class: "col-xs-12 btn btn-primary" %>
+					</div>
 
-				    <% end %>
+					<% end %>
 				</div>
 
 
@@ -108,40 +108,40 @@
 					<h2>Books</h2>
 					<table class="table">
 						<thead>
-				          <tr>
-				          	<th></th>
-				            <th>Title</th>
-				            <th>Opinion</th>
-				          </tr>
-				        </thead>
+							<tr>
+								<th></th>
+								<th>Title</th>
+								<th>Opinion</th>
+							</tr>
+						</thead>
 
-				        <tbody>
-				          <% @user.books.each do |book| %>
-				            <tr>
-				            	<td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'50x50' %></td>
-				              	<td><%= link_to book.title, book_path(book) %></td>
-				              	<td><%= book.body %></td>
+						<tbody>
+							<% @user.books.each do |book| %>
+							<tr>
+								<td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'50x50' %></td>
+								<td><%= link_to book.title, book_path(book) %></td>
+								<td><%= book.body %></td>
 
-				              	<% if book.favorited_by?(current_user) %>
-				              	  <td>
-								    <%= link_to book_favorites_path(book), method: :delete do %>
-								      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-								      <%= book.favorites.count %>
-								    <% end %>
-								  </td>
+								<% if book.favorited_by?(current_user) %>
+								<td>
+									<%= link_to book_favorites_path(book), method: :delete do %>
+									<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+									<%= book.favorites.count %>
+									<% end %>
+								</td>
 								<% else %>
-								  <td>
-								    <%= link_to book_favorites_path(book), method: :post do %>
-								      <i class="fa fa-heart-o" aria-hidden="true"></i>
-								      <%= book.favorites.count %>
-								    <% end %>
-								  </td>
+								<td>
+									<%= link_to book_favorites_path(book), method: :post do %>
+									<i class="fa fa-heart-o" aria-hidden="true"></i>
+									<%= book.favorites.count %>
+									<% end %>
+								</td>
 								<% end %>
 
-				              	<td>コメント数 : <%= book.book_comments.count %></td>
-				            </tr>
-				          <% end %>
-				        </tbody>
+								<td>コメント数 : <%= book.book_comments.count %></td>
+							</tr>
+							<% end %>
+						</tbody>
 
 					</table>
 				</div>
@@ -151,13 +151,13 @@
 	</div>
 
 	<footer>
-	  <div class="container">
-	  	<div class="row">
-	    	<div class="col-xs-3 col-xs-offset-9">
-	    		<p>CopyRight Infratop.inc</p>
-	    	</div>
-	    </div>
-	  </div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3 col-xs-offset-9">
+					<p>CopyRight Infratop.inc</p>
+				</div>
+			</div>
+		</div>
 	</footer>
 
 </body>
