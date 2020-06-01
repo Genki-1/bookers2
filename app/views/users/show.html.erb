@@ -48,13 +48,17 @@
 
 					<table class="table">
 						<tr>
-							　　        <th><h4>name</h4></th>
-							　　        <th><%= @user.name %></th>
-						　       </tr>
-						　       <tr>
-							　　        <th><h4>introduction</h4></th>
-							　　        <th><%= @user.introduction %></th>
-						　　     </tr>
+							<th>
+								<h4>name</h4>
+							</th>
+							<th><%= @user.name %></th>
+						</tr>
+						<tr>
+							<th>
+								<h4>introduction</h4>
+							</th>
+							<th><%= @user.introduction %></th>
+						</tr>
 						<tr>
 							<th><h4>follows</h4></th>
 							<th><%= link_to @user.follower.count, follower_user_path(@user) %></th>
@@ -81,7 +85,6 @@
 					<% end %>
 					<% end %>
 
-
 					<h2>New book</h2>
 					<%= form_for(@newbook) do |b| %>
 
@@ -102,7 +105,6 @@
 
 					<% end %>
 				</div>
-
 
 				<div class="col-xs-9">
 					<h2>Books</h2>
