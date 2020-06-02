@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :index, :edit, :update] do
-     member do
+    member do
       get :follower, :followed
     end
   end
@@ -25,5 +25,4 @@ Rails.application.routes.draw do
   root :to => "home#top"
 
   get "home/about" => "home#about"
-
 end

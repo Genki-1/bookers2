@@ -15,23 +15,21 @@ class User < ApplicationRecord
   end
 
   def books
-	  return Book.where(user_id: self.id)
+    Book.where(user_id: id)
   end
 
   attachment :profile_image
 
-  validates :name, 
-    presence: true,
-    length: { minimum: 2, maximum: 20 }
+  validates :name,
+            presence: true,
+            length: { minimum: 2, maximum: 20 }
 
-  validates :email, 
-    uniqueness: true,
-    presence: true
+  validates :email,
+            uniqueness: true,
+            presence: true
 
-  validates :introduction, 
-  	length: { maximum: 50 }
-
-
+  validates :introduction,
+            length: { maximum: 50 }
 
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー取得
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得
@@ -53,6 +51,4 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
-
-  
 end
